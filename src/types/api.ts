@@ -1,4 +1,5 @@
 export interface Image {
+  __typename: 'Image';
   id: string;
   title: string;
   author: string;
@@ -6,35 +7,25 @@ export interface Image {
   liked: boolean;
   picture: string;
   likesCount: number;
-  createdAt: string;
-  updatedAt: string;
+}
+
+export interface ImageEdge {
+  __typename: 'ImageEdge';
+  node: Image;
+}
+
+export interface PageInfo {
+  __typename: 'PageInfo';
+  hasNextPage: boolean;
+  endCursor: string;
+}
+
+export interface ImagesConnection {
+  __typename: 'ImageConnection';
+  edges: ImageEdge[];
+  pageInfo: PageInfo;
 }
 
 export interface ImagesQueryResponse {
-  images: {
-    edges: {
-      node: Image;
-    }[];
-    pageInfo: {
-      hasNextPage: boolean;
-      endCursor: string;
-    };
-  };
-}
-
-export interface ImagesQueryVariables {
-  first?: number;
-  after?: string | null;
-  title?: string | null;
-}
-
-export interface LikeImageInput {
-  imageId: string;
-}
-
-export interface LikeImageResponse {
-  likeImage: {
-    clientMutationId: string;
-    image: Pick<Image, 'id' | 'liked' | 'likesCount'>;
-  };
+  images: ImagesConnection;
 }
