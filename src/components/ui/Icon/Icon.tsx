@@ -14,25 +14,23 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
     | '28'
     | '32'
     | '40';
-  color?: string;
-  viewBox?: string;
-  duotone?: boolean;
 }
 
 export const Icon: React.FC<IconProps> = ({
   name,
   size = '14',
-  color = 'current',
-  viewBox = '0 0 20 20',
+  color = 'currentColor',
+  viewBox = '0 0 24 24',
   ...props
 }) => {
   return (
     <svg
-      style={{ fill: color }}
       width={size}
       height={size}
       viewBox={viewBox}
       name={name}
+      fill={color}
+      stroke={color}
       {...props}
     >
       {Icons[name]()}
