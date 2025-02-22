@@ -1,9 +1,9 @@
 import { HtmlHTMLAttributes } from 'react';
 import { Image } from '../../../types/api';
-import { ImageCard } from './ImageCard';
+import { ImageCard } from './index';
 import InfiniteList from '../../common/InfiniteList';
 import { ApolloError } from '@apollo/client';
-import { ImagesListSkeleton } from './ImageCardSkeleton';
+import { ListEmpty, ListError, ListFooter } from './list';
 
 interface ImagesListProps extends HtmlHTMLAttributes<HTMLDListElement> {
   items: Image[];
@@ -13,7 +13,7 @@ interface ImagesListProps extends HtmlHTMLAttributes<HTMLDListElement> {
   error?: ApolloError | null;
 }
 
-const ImagesList = ({
+export const ImagesList = ({
   items,
   isLoading,
   onLoadMore,
@@ -32,35 +32,15 @@ const ImagesList = ({
         error={error}
         onRetry={onLoadMore}
         ListErrorComponent={({ error, onRetry }) => (
-          <div className="text-center p-4">
-            <p className="text-red-500">
-              ¡Ups! Algo salió mal: {error.message}
-            </p>
-            <button onClick={onRetry}>Intentar de nuevo</button>
-          </div>
+          <ListError error={error} onRetry={onRetry} />
         )}
-        ListEmptyComponent={
-          <div className="text-center p-4">
-            <p>
-              No se encontraron imágenes. Intenta con otro término de búsqueda.
-            </p>
-          </div>
-        }
+        ListEmptyComponent={<ListEmpty message="No se encontraron imágenes" />}
         ListFooterComponent={
-          !hasMore && !isLoading && !error ? (
-            <div className="text-center p-4">
-              <p>
-                Eso es todo por ahora. Muchas gracias por visitar nuestra
-                galería. ❤️
-              </p>
-            </div>
-          ) : !error &&(
-            <ImagesListSkeleton length={3} />
-          )
+          <ListFooter isLoading={isLoading} hasMore={hasMore} />
         }
       />
     </div>
   );
 };
 
-export default ImagesList;
+ImagesList.displayName = 'ImagesList';

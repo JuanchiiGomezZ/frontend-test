@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { API_URL } from '../config/constant';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -21,6 +22,6 @@ const cache = new InMemoryCache({
 });
 
 export const apolloClient = new ApolloClient({
-  uri: 'https://sandbox-api-test.samyroad.com/graphql',
+  uri: API_URL,
   cache,
 });

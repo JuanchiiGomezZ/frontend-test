@@ -23,7 +23,7 @@ interface InfiniteScrollListProps<T> {
         error,
         onRetry,
       }: {
-        error: Error;
+        error: ApolloError;
         onRetry?: () => void;
       }) => React.ReactNode);
   onRetry?: () => void;
@@ -126,7 +126,7 @@ export default function InfiniteScrollList<T>({
     );
   }
 
-  if (isLoading) {
+  if (isLoading && ListLoaderComponent) {
     return (
       <div className={`w-full ${className}`}>
         {ListHeaderComponent}
@@ -136,7 +136,7 @@ export default function InfiniteScrollList<T>({
     );
   }
 
-  if (data.length === 0 && ListEmptyComponent) {
+  if (data.length === 0 && ListEmptyComponent && !isLoading) {
     return (
       <div className={`w-full ${className}`}>
         {ListHeaderComponent}
