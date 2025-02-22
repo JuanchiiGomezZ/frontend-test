@@ -15,6 +15,7 @@ export const SearchInput = ({ initialValue, onSearch }: SearchInputProps) => {
 
   const handleSearch = () => {
     onSearch(inputValue);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
