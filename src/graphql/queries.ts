@@ -3,8 +3,7 @@ import { gql } from '@apollo/client';
 export const GET_IMAGES = gql`
   query GetImages($first: Int, $after: String, $title: String) {
     images(first: $first, after: $after, title: $title) {
-      edges {
-        node {
+        nodes {
           id
           title
           author
@@ -15,7 +14,6 @@ export const GET_IMAGES = gql`
           createdAt
           updatedAt
         }
-      }
       pageInfo {
         hasNextPage
         endCursor

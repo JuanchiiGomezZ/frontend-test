@@ -9,20 +9,17 @@ export interface Image {
   likesCount: number;
 }
 
-export interface ImageEdge {
-  __typename: 'ImageEdge';
-  node: Image;
-}
-
 export interface PageInfo {
   __typename: 'PageInfo';
   hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startCursor: string;
   endCursor: string;
 }
 
 export interface ImagesConnection {
   __typename: 'ImageConnection';
-  edges: ImageEdge[];
+  nodes: Image[];
   pageInfo: PageInfo;
 }
 

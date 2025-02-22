@@ -1,5 +1,5 @@
-import { Icon } from '../../../components/ui/Icon/Icon';
-import { IconNames } from '../../../components/ui/Icon/Icons';
+import { Icon } from '../../ui/Icon/Icon';
+import { IconNames } from '../../ui/Icon/Icons';
 import { Image } from '../../../types/api';
 
 // src/components/ui/ImageCard.tsx
@@ -77,12 +77,6 @@ export const ImageCard = ({
           <span className="text-text-subtle">by</span>
           <span>{author}</span>
         </div>
-        <span>
-          {new Intl.NumberFormat('es-ES', {
-            style: 'currency',
-            currency: 'EUR',
-          }).format(price)}
-        </span>
       </div>
     </div>
   );
