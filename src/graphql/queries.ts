@@ -22,7 +22,7 @@ export const GET_IMAGES = gql`
 
 export const LIKE_IMAGE = gql`
   mutation likeImage($input: LikeImageInput!) {
-    likeImage(input: { imageId: $input }) {
+    likeImage(input: $input) {
       clientMutationId
       image {
         id

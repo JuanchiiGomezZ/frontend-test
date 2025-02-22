@@ -4,6 +4,7 @@ import { ImageCard } from './index';
 import InfiniteList from '../../common/InfiniteList';
 import { ApolloError } from '@apollo/client';
 import { ListEmpty, ListError, ListFooter } from './list';
+import { useLikeImage } from '../../../hooks/useLikeImage';
 
 interface ImagesListProps extends HtmlHTMLAttributes<HTMLDListElement> {
   items: Image[];
@@ -20,11 +21,15 @@ export const ImagesList = ({
   hasMore,
   error,
 }: ImagesListProps) => {
+  const { likeImage } = useLikeImage();
+
   return (
     <div>
       <InfiniteList
         data={items}
-        renderItem={(item) => <ImageCard key={item.id} {...item} />}
+        renderItem={(item) => (
+          <ImageCard key={item.id} {...item} onLike={likeImage} />
+        )}
         keyExtractor={(item) => item.id}
         onEndReached={onLoadMore}
         isLoading={isLoading}

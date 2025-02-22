@@ -14,16 +14,19 @@ const ActionButton = ({
   isActive,
   icon,
 }: {
-  onClick: () => void;
+  onClick?: () => void;
   count: number;
   isActive?: boolean;
   icon: IconNames;
 }) => {
   return (
-    <button onClick={onClick} className="flex items-center gap-1 flex-col">
+    <button
+      onClick={onClick}
+      className="flex items-center  flex-col text-white cursor-pointer"
+    >
       <Icon
         name={icon}
-        className={isActive ? 'text-red' : 'text-text-subtle'}
+        className={isActive && onClick ? 'text-red' : 'text-white'}
         size="28"
       />
       {count}
@@ -51,7 +54,9 @@ export const ImageCard = ({
           onError={(e) => {
             (e.target as HTMLImageElement).src = FALLBACK_IMAGE;
           }}
+          loading="lazy"
         />
+       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 to-transparent" />
         <div
           className="absolute top-0 left-0 w-28 aspect-square bg-white"
           style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }}
@@ -63,18 +68,14 @@ export const ImageCard = ({
             }).format(price)}
           </span>
         </div>
-        <div className="absolute bottom-0 right-0 flex space-x-1 p-2 flex-col">
+        <div className="absolute bottom-5 right-1 flex gap-3 p-2 flex-col">
           <ActionButton
             onClick={() => onLike?.(id)}
             count={likesCount}
             icon="Heart"
             isActive={isLiked}
           />
-          <ActionButton
-            onClick={() => onLike?.(id)}
-            count={likesCount}
-            icon="Share"
-          />
+          <ActionButton count={0} icon="Share" />
         </div>
       </div>
       <div className="p-3 flex-1 flex justify-center items-center flex-col">

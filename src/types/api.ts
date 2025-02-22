@@ -26,3 +26,12 @@ export interface ImagesConnection {
 export interface ImagesQueryResponse {
   images: ImagesConnection;
 }
+
+export interface LikeImageResponse {
+  data: {
+    likeImage: {
+      clientMutationId: string;
+      image: Image;
+    };
+  };
+}
