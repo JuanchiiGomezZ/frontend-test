@@ -36,7 +36,11 @@ export const ImagesList = ({
         )}
         ListEmptyComponent={<ListEmpty message="No se encontraron imágenes" />}
         ListFooterComponent={
-          <ListFooter isLoading={isLoading} hasMore={hasMore} />
+          <ListFooter
+            isLoading={isLoading}
+            hasMore={hasMore}
+            hasResults={items.length > 0}
+          />
         }
       />
     </div>

@@ -14,7 +14,7 @@ export const ListEmpty = memo(
       role="status"
       aria-label="Lista vacía"
     >
-      <p className="text-center text-lg">{message}</p>
+      <p className="text-center">{message}</p>
     </div>
   )
 );

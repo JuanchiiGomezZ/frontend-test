@@ -5,12 +5,18 @@ export interface ListFooterProps {
   hasMore: boolean;
   isLoading: boolean;
   error?: Error | null;
+  hasResults: boolean;
 }
 
-export const ListFooter = ({ hasMore, isLoading, error }: ListFooterProps) => {
+export const ListFooter = ({
+  hasMore,
+  isLoading,
+  error,
+  hasResults,
+}: ListFooterProps) => {
   if (error) return null;
 
-  if (!hasMore && !isLoading) {
+  if (!hasMore && !isLoading && hasResults) {
     return (
       <div
         className="flex flex-col items-center p-8 text-gray-500"

@@ -2,12 +2,12 @@ import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { Icon } from './Icon/Icon';
 
 interface SearchInputProps {
-  initialValue: string;
+  initialValue?: string;
   onSearch: (value: string) => void;
 }
 
 export const SearchInput = ({ initialValue, onSearch }: SearchInputProps) => {
-  const [inputValue, setInputValue] = useState(initialValue);
+  const [inputValue, setInputValue] = useState(initialValue || '');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -44,7 +44,7 @@ export const SearchInput = ({ initialValue, onSearch }: SearchInputProps) => {
                  hover:text-gray-600 transition-colors cursor-pointer"
         aria-label="Search"
       >
-        <Icon name="Search" className="w-5 h-5"  />
+        <Icon name="Search" className="w-5 h-5" />
       </button>
     </div>
   );

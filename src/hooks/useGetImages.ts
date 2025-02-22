@@ -2,18 +2,32 @@
 import { useQuery, NetworkStatus } from '@apollo/client';
 import { GET_IMAGES } from '../graphql/queries';
 import type { ImagesQueryResponse } from '../types/api';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useQueryParams } from './useQueryParams';
 
 const ITEMS_PER_PAGE = 24;
 export const useGetImages = () => {
-  const { loading, error, data, fetchMore, networkStatus } =
+  const { getParam } = useQueryParams();
+  const searchTerm = getParam('q');
+  const { loading, error, data, fetchMore, networkStatus, refetch } =
     useQuery<ImagesQueryResponse>(GET_IMAGES, {
       variables: {
         first: ITEMS_PER_PAGE,
         after: null,
+        title: searchTerm || undefined,
       },
       notifyOnNetworkStatusChange: true,
+      errorPolicy: 'all',
+      fetchPolicy: 'cache-and-network',
     });
+
+  useEffect(() => {
+    refetch({
+      first: ITEMS_PER_PAGE,
+      after: null,
+      title: searchTerm || undefined,
+    });
+  }, [searchTerm, refetch]);
 
   const isLoading = useMemo(() => {
     const isFetchingMore = networkStatus === NetworkStatus.fetchMore;
@@ -38,10 +52,11 @@ export const useGetImages = () => {
         variables: {
           first: ITEMS_PER_PAGE,
           after: data.images.pageInfo.endCursor,
+          title: searchTerm || undefined,
         },
       });
     }
-  }, [data?.images.pageInfo, fetchMore]);
+  }, [data?.images.pageInfo, fetchMore, searchTerm]);
 
   return {
     items,
