@@ -1,10 +1,10 @@
 import { HtmlHTMLAttributes } from 'react';
 import { Image } from '../../../types/api';
 import { ImageCard } from './index';
-import InfiniteList from '../../common/InfiniteList';
 import { ApolloError } from '@apollo/client';
 import { ListEmpty, ListError, ListFooter } from './list';
-import { useLikeImage } from '../../../hooks/useLikeImage';
+import { useLikeImage } from '../hooks/useLikeImage';
+import InfiniteScrollList from '../../../components/common/InfiniteScrollList';
 
 interface ImagesListProps extends HtmlHTMLAttributes<HTMLDListElement> {
   items: Image[];
@@ -25,7 +25,7 @@ export const ImagesList = ({
 
   return (
     <div>
-      <InfiniteList
+      <InfiniteScrollList
         data={items}
         renderItem={(item) => (
           <ImageCard key={item.id} {...item} onLike={likeImage} />

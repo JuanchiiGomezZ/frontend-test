@@ -1,9 +1,9 @@
 // hooks/useImagesQuery.ts
 import { useQuery, NetworkStatus } from '@apollo/client';
-import { GET_IMAGES } from '../graphql/queries';
-import type { ImagesQueryResponse } from '../types/api';
+import { GET_IMAGES } from '../../../graphql/queries';
+import type { ImagesQueryResponse } from '../../../types/api';
 import { useCallback, useEffect, useMemo } from 'react';
-import { useQueryParams } from './useQueryParams';
+import { useQueryParams } from '../../../hooks/useQueryParams';
 
 const ITEMS_PER_PAGE = 24;
 export const useGetImages = () => {

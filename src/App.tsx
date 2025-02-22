@@ -1,6 +1,6 @@
 import ContentLayout from './components/ui/Layout/ContentLayout.';
-import { ImagesList } from './components/features/gallery';
-import { useGetImages } from './hooks/useGetImages';
+import { ImagesList } from './features/gallery/components';
+import { useGetImages } from './features/gallery/hooks/useGetImages';
 import { Header } from './components/common/Header';
 
 function App() {

@@ -15,7 +15,7 @@ export const debounce = <T extends (...args: any[]) => void>(
   };
 };
 
-export const useDebounce = <T extends () => void>(
+export const useDebounce = <T extends (...args: any[]) => void>(
   callback: T,
   timeout: number = 1000
 ) => {
@@ -26,8 +26,8 @@ export const useDebounce = <T extends () => void>(
   }, [callback]);
 
   return useMemo(() => {
-    const func = () => {
-      ref.current?.();
+    const func = (...args: Parameters<T>) => {
+      ref.current?.(...args);
     };
 
     return debounce(func, timeout);

@@ -1,5 +1,5 @@
-import { Icon } from '../../ui/Icon/Icon';
-import { IconNames } from '../../ui/Icon/Icons';
+import { Icon } from '../../../components/ui/Icon/Icon';
+import { IconNames } from '../../../components/ui/Icon/Icons';
 import { Image } from '../../../types/api';
 
 interface ImageCardProps extends Image {
@@ -56,7 +56,7 @@ export const ImageCard = ({
           }}
           loading="lazy"
         />
-       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 to-transparent" />
         <div
           className="absolute top-0 left-0 w-28 aspect-square bg-white"
           style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }}
