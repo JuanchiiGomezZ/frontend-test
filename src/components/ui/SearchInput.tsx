@@ -26,7 +26,7 @@ export const SearchInput = ({ initialValue, onSearch }: SearchInputProps) => {
   };
 
   return (
-    <div className="relative w-full max-w-md">
+    <div className="relative w-full max-w-sm">
       <input
         type="text"
         value={inputValue}

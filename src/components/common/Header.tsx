@@ -14,8 +14,9 @@ export const Header = () => {
     setSearchTerm(value.trim());
   };
 
+  // add a shadow on the bottom header
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm shadow-gray-100">
       <ContentLayout>
         <nav className="min-h-18 flex items-start justify-between gap-4 flex-col sm:flex-row sm:items-center">
           <Logo />
