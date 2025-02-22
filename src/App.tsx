@@ -1,14 +1,14 @@
 import ContentLayout from './components/ui/Layout/ContentLayout.';
 import { ImagesList } from './components/features/gallery';
 import { useGetImages } from './hooks/useGetImages';
+import { Header } from './components/common/Header';
 
 function App() {
-  const { items, isLoading, error, hasMore, onLoadMore, totalImages } =
-    useGetImages();
+  const { items, isLoading, error, hasMore, onLoadMore } = useGetImages();
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Images ({totalImages})</h1>
+    <div>
+      <Header />
       <ContentLayout>
         <ImagesList
           items={items}
