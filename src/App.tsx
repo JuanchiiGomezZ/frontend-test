@@ -5,7 +5,7 @@ import { useGetImages } from './hooks/useGetImages';
 function App() {
   const { items, isLoading, error, hasMore, onLoadMore, totalImages } =
     useGetImages();
-  console.log(isLoading);
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Images ({totalImages})</h1>
