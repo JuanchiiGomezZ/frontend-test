@@ -2,10 +2,11 @@ import { Icon } from '../../ui/Icon/Icon';
 import { IconNames } from '../../ui/Icon/Icons';
 import { Image } from '../../../types/api';
 
-// src/components/ui/ImageCard.tsx
 interface ImageCardProps extends Image {
   onLike?: (id: string) => void;
 }
+
+const FALLBACK_IMAGE = '../assets/fallback-image.jpg';
 
 const ActionButton = ({
   onClick,
@@ -43,7 +44,14 @@ export const ImageCard = ({
   return (
     <div className="border-background-darker border-[1px] w-full h-full flex flex-col">
       <div className="aspect-square w-full relative">
-        <img src={picture} alt={title} className="w-full h-full object-cover" />
+        <img
+          src={picture}
+          alt={title}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = FALLBACK_IMAGE;
+          }}
+        />
         <div
           className="absolute top-0 left-0 w-28 aspect-square bg-white"
           style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }}

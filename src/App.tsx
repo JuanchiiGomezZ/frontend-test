@@ -4,13 +4,29 @@ import { ImagesQueryResponse } from './types/api';
 import ImagesList from './components/features/gallery/ImagesList';
 import ContentLayout from './components/ui/Layout/ContentLayout.';
 
-function App() {
-  const { loading, error, data } = useQuery<ImagesQueryResponse>(GET_IMAGES);
+const ITEMS_PER_PAGE = 24;
 
-  if (loading || !data) return <div>Loading...</div>;
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+function App() {
+  const { loading, error, data, fetchMore } = useQuery<ImagesQueryResponse>(
+    GET_IMAGES,
+    {
+      variables: {
+        first: ITEMS_PER_PAGE,
+        after: null,
+      },
+    }
+  );
+
+  const handleLoadMore = () => {
+    if (data?.images.pageInfo.hasNextPage) {
+      fetchMore({
+        variables: {
+          first: ITEMS_PER_PAGE,
+          after: data.images.pageInfo.endCursor,
+        },
+      });
+    }
+  };
 
   return (
     <div className="p-4">
@@ -18,7 +34,13 @@ function App() {
         Images ({data?.images.nodes.length})
       </h1>
       <ContentLayout>
-        <ImagesList data={data} />
+        <ImagesList
+          items={data?.images.nodes || []}
+          isLoading={loading}
+          onLoadMore={handleLoadMore}
+          hasMore={!!data?.images.pageInfo?.hasNextPage}
+          error={error}
+        />
       </ContentLayout>
     </div>
   );
