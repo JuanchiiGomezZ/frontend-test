@@ -8,8 +8,6 @@
   --color-red: #c6492a;
 
   --text-card-title: 28px;
-
-  
 }
 
 body {
@@ -17,4 +15,6 @@ body {
   color: var(--color-text);
   background-color: var(--color-background);
   font-size: 16px;
+  box-sizing: border-box;
+  margin: 0;
 }

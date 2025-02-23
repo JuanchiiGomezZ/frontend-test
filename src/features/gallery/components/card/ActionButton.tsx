@@ -1,17 +1,19 @@
 import { Icon } from '../../../../components/ui/Icon/Icon';
 import { IconNames } from '../../../../components/ui/Icon/Icons';
 
+interface ActionButtonProps {
+  onClick?: () => void;
+  count: number;
+  isActive?: boolean;
+  icon: IconNames;
+}
+
 export const ActionButton = ({
   onClick,
   count,
   isActive,
   icon,
-}: {
-  onClick?: () => void;
-  count: number;
-  isActive?: boolean;
-  icon: IconNames;
-}) => {
+}: ActionButtonProps) => {
   return (
     <button
       onClick={onClick}

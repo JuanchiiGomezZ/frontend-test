@@ -1,38 +1,12 @@
-import { Icon } from '../../../../components/ui/Icon/Icon';
-import { IconNames } from '../../../../components/ui/Icon/Icons';
 import { Image } from '../../../../types/api';
+import { formatPrice } from '../../utils/format';
+import { ActionButton } from './ActionButton';
 
 interface ImageCardProps extends Image {
   onLike?: (id: string) => void;
 }
 
 const FALLBACK_IMAGE = '../assets/fallback-image.jpg';
-
-const ActionButton = ({
-  onClick,
-  count,
-  isActive,
-  icon,
-}: {
-  onClick?: () => void;
-  count: number;
-  isActive?: boolean;
-  icon: IconNames;
-}) => {
-  return (
-    <button
-      onClick={onClick}
-      className="flex flex-row-reverse items-center sm:flex-col sm:text-white cursor-pointer border-background-darker border-t-[1px] sm:border-none w-full justify-center p-2 gap-1"
-    >
-      <Icon
-        name={icon}
-        className={`${isActive && onClick ? 'text-red' : ''} hover:opacity-70`}
-        size="28"
-      />
-      {count}
-    </button>
-  );
-};
 
 export const ImageCard = ({
   picture,
@@ -61,12 +35,7 @@ export const ImageCard = ({
           className="absolute top-0 left-0 w-28 aspect-square bg-white"
           style={{ clipPath: 'polygon(0 0, 0 100%, 100% 0)' }}
         >
-          <span className="pl-1 pt-4 inline-block">
-            {new Intl.NumberFormat('es-ES', {
-              style: 'currency',
-              currency: 'EUR',
-            }).format(price)}
-          </span>
+          <span className="pl-1 pt-6 inline-block">{formatPrice(price)}</span>
         </div>
         <div className="absolute bottom-5 right-1 sm:flex gap-3 p-2 flex-col hidden">
           <ActionButton
