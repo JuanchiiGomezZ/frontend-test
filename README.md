@@ -1,50 +1,127 @@
-# React + TypeScript + Vite
+# Image Gallery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Descripción
 
-Currently, two official plugins are available:
+Aplicación web (SPA) desarrollada en React que permite visualizar y gestionar una galería de imágenes con funcionalidades de scroll infinito, búsqueda y sistema de likes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚡ Características principales
 
-## Expanding the ESLint configuration
+- Scroll infinito para visualización de imágenes
+- Búsqueda de imágenes por título
+- Sistema de like/unlike para imágenes
+- Diseño responsive y accesible
+- Integración con GraphQL API
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ Tecnologías
 
-- Configure the top-level `parserOptions` property like this:
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- Apollo GraphQL
+- Testing Library
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📁 Estructura del proyecto
+
+```
+src/
+  ├── components/
+  │   ├── common/        # Componentes compartidos
+  │   └── ui/            # Componentes base
+  ├── features/          # Características principales
+  │   └── gallery/
+  ├── graphql/           # Queries y mutations
+  ├── hooks/             # Custom hooks
+  ├── types/             # Types globales
+  └── utils/             # Utilidades
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚦 Comenzando
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerrequisitos
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- Node.js (v18 o superior)
+- yarn
+
+### Variables de Entorno
+
+El proyecto utiliza las siguientes variables de entorno:
+
+```env
+VITE_API_URL=https://sandbox-api-test.samyroad.com/graphql
 ```
+
+1. Copia el archivo `.env.example` a `.env`
+
+```bash
+cp .env.example .env
+```
+
+2. Ajusta las variables según tu entorno
+
+### Instalación
+
+1. Clonar el repositorio
+
+```bash
+git clone <repository-url>
+```
+
+2. Instalar dependencias
+
+```bash
+yarn install
+```
+
+3. Iniciar el servidor de desarrollo
+
+```bash
+yarn dev
+```
+
+La aplicación estará disponible en `http://localhost:3000`
+
+## 📝 Scripts disponibles
+
+- `yarn dev` - Inicia el servidor de desarrollo
+- `yarn build` - Genera la build de producción
+- `yarn test` - Ejecuta los tests
+- `yarn lint` - Ejecuta el linter
+- `yarn format` - Formatea el código
+
+## 🧪 Testing
+
+El proyecto incluye tests unitarios y de integración utilizando:
+
+- Jest
+- React Testing Library
+- MSW para el mock de peticiones GraphQL
+
+Para ejecutar los tests:
+
+```bash
+yarn test
+```
+
+## 📚 API GraphQL
+
+La aplicación se conecta a la API GraphQL disponible en:
+
+```
+https://sandbox-api-test.samyroad.com/graphql
+```
+
+### Principales operaciones:
+
+- Query `images`: Obtiene el listado de imágenes con soporte para paginación
+- Mutation `likeImage`: Gestiona el like/unlike de una imagen
+
+## 🎨 UI/UX
+
+El diseño de la aplicación sigue las especificaciones proporcionadas en Figma, priorizando:
+
+- Accesibilidad
+- Responsive design
+- Experiencia de usuario fluida
+- Consistencia visual
+
