@@ -1,3 +1,2 @@
-export * from './ImagesList';
-export * from './ImageCard';
+export * from './card';
 export * from './list';

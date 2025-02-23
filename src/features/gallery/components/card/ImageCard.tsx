@@ -1,6 +1,6 @@
-import { Icon } from '../../../components/ui/Icon/Icon';
-import { IconNames } from '../../../components/ui/Icon/Icons';
-import { Image } from '../../../types/api';
+import { Icon } from '../../../../components/ui/Icon/Icon';
+import { IconNames } from '../../../../components/ui/Icon/Icons';
+import { Image } from '../../../../types/api';
 
 interface ImageCardProps extends Image {
   onLike?: (id: string) => void;
@@ -22,11 +22,11 @@ const ActionButton = ({
   return (
     <button
       onClick={onClick}
-      className="flex items-center  flex-col text-white cursor-pointer"
+      className="flex flex-row-reverse items-center sm:flex-col sm:text-white cursor-pointer border-background-darker border-t-[1px] sm:border-none w-full justify-center p-2 gap-1"
     >
       <Icon
         name={icon}
-        className={isActive && onClick ? 'text-red' : 'text-white'}
+        className={`${isActive && onClick ? 'text-red' : ''} hover:opacity-70`}
         size="28"
       />
       {count}
@@ -68,7 +68,7 @@ export const ImageCard = ({
             }).format(price)}
           </span>
         </div>
-        <div className="absolute bottom-5 right-1 flex gap-3 p-2 flex-col">
+        <div className="absolute bottom-5 right-1 sm:flex gap-3 p-2 flex-col hidden">
           <ActionButton
             onClick={() => onLike?.(id)}
             count={likesCount}
@@ -86,6 +86,15 @@ export const ImageCard = ({
           <span className="text-text-subtle">by</span>
           <span>{author}</span>
         </div>
+      </div>
+      <div className="sm:hidden grid grid-cols-2 h-[60px] w-full">
+        <ActionButton
+          onClick={() => onLike?.(id)}
+          count={likesCount}
+          icon="Heart"
+          isActive={isLiked}
+        />
+        <ActionButton count={0} icon="Share" />
       </div>
     </div>
   );
