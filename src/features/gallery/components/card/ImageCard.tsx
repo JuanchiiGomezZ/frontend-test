@@ -56,13 +56,14 @@ export const ImageCard = ({
           <span>{author}</span>
         </div>
       </div>
-      <div className="sm:hidden grid grid-cols-2 h-[60px] w-full">
+      <div className="sm:hidden grid grid-cols-2 h-[60px] w-full relative">
         <ActionButton
           onClick={() => onLike?.(id)}
           count={likesCount}
           icon="Heart"
           isActive={isLiked}
         />
+        <div className="absolute right-1/2 h-full w-[1px] bg-background-darker" />
         <ActionButton count={0} icon="Share" />
       </div>
     </div>

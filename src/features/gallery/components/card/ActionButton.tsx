@@ -17,7 +17,7 @@ export const ActionButton = ({
   return (
     <button
       onClick={onClick}
-      className="flex flex-row-reverse items-center sm:flex-col sm:text-white cursor-pointer border-background-darker border-t-[1px] sm:border-none w-full justify-center p-2 gap-1"
+      className="flex flex-row-reverse items-center sm:flex-col sm:text-white cursor-pointer border-background-darker border-t-[1px] sm:border-none w-full justify-center p-2 gap-1 active:opacity-70"
     >
       <Icon
         name={icon}
