@@ -1,2 +1,2 @@
-export * from './ImageCard';
-export * from './ActionButton';
+export { ActionButton } from './ActionButton';
+export { ImageCard } from './ImageCard';

@@ -23,5 +23,5 @@ const cache = new InMemoryCache({
 
 export const apolloClient = new ApolloClient({
   uri: API_URL,
-  cache,
+  cache
 });
