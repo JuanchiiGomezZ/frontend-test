@@ -1,21 +1,30 @@
 import { useEffect, useMemo, useRef } from 'react';
 
-// Usamos ReturnType<typeof setTimeout> en lugar de NodeJS.Timeout
-export const debounce = <T extends (...args: any[]) => void>(
+export const debounce = <T extends (...args: any[]) => any>(
   func: T,
   timeout: number
 ) => {
   let timer: ReturnType<typeof setTimeout>;
 
-  return (...args: Parameters<T>) => {
+  return (...args: Parameters<T>): ReturnType<T> => {
     clearTimeout(timer);
-    timer = setTimeout(() => {
-      func(...args);
-    }, timeout);
+    return new Promise((resolve, reject) => {
+      timer = setTimeout(() => {
+        try {
+          // Ya que func puede devolver una Promise, usamos Promise.resolve
+          // para manejar tanto valores síncronos como asíncronos
+          Promise.resolve(func(...args))
+            .then(resolve)
+            .catch(reject);
+        } catch (error) {
+          reject(error);
+        }
+      }, timeout);
+    }) as ReturnType<T>;
   };
 };
 
-export const useDebounce = <T extends (...args: any[]) => void>(
+export const useDebounce = <T extends (...args: any[]) => any>(
   callback: T,
   timeout: number = 1000
 ) => {
@@ -26,8 +35,8 @@ export const useDebounce = <T extends (...args: any[]) => void>(
   }, [callback]);
 
   return useMemo(() => {
-    const func = (...args: Parameters<T>) => {
-      ref.current?.(...args);
+    const func = (...args: Parameters<T>): ReturnType<T> => {
+      return ref.current?.(...args);
     };
 
     return debounce(func, timeout);

@@ -15,7 +15,12 @@ export const ListFooter = ({
   hasResults,
 }: ListFooterProps) => {
   if (error) return null;
-
+  console.log({
+    hasMore,
+    isLoading,
+    error,
+    hasResults,
+  });
   if (!hasMore && !isLoading && hasResults) {
     return (
       <div

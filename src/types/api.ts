@@ -28,10 +28,9 @@ export interface ImagesQueryResponse {
 }
 
 export interface LikeImageResponse {
-  data: {
-    likeImage: {
-      clientMutationId: string;
-      image: Image;
-    };
+  likeImage: {
+    clientMutationId: string;
+    image: Pick<Image, 'liked' | 'likesCount' | 'id' | '__typename'>;
+    __typename: string;
   };
 }
