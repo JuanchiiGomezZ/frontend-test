@@ -64,7 +64,7 @@ cp .env.example .env
 1. Clonar el repositorio
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/JuanchiiGomezZ/frontend-test
 ```
 
 2. Instalar dependencias
@@ -124,4 +124,3 @@ El diseño de la aplicación sigue las especificaciones proporcionadas en Figma,
 - Responsive design
 - Experiencia de usuario fluida
 - Consistencia visual
-
