@@ -61,6 +61,8 @@ cp .env.example .env
 
 ### Instalación
 
+> **Nota**: Este proyecto usa yarn como gestor de paquetes. Si prefieres usar npm, elimina el archivo `yarn.lock` y ejecuta `npm install` después de clonar.
+
 1. Clonar el repositorio
 
 ```bash
